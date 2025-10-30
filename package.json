@@ -1,0 +1,23 @@
+{
+  "name": "emadt3ch-tools",
+  "version": "1.0.0",
+  "description": "مجموعه کامل ابزارها و وبسایت‌های کاربردی برای توسعه‌دهندگان - EmadT3ch Tools",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "keywords": [
+    "tools",
+    "resources",
+    "development",
+    "persian",
+    "emadt3ch"
+  ],
+  "author": "Emad Dousti (@EmadT3ch)",
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

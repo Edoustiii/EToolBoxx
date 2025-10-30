@@ -1,0 +1,631 @@
+/* ==========================================
+   🎨 EmadT3ch Tools - Custom Theme
+   طراحی نئونی مدرن با Glassmorphism
+   ========================================== */
+
+/* ==========================================
+   ✨ متغیرهای رنگی سفارشی
+   ========================================== */
+:root {
+  /* رنگ‌های پایه */
+  --vp-c-bg: #0d1117;
+  --vp-c-bg-soft: #161b22;
+  --vp-c-bg-mute: #1c2128;
+  --vp-c-bg-alt: #21262d;
+  
+  /* رنگ‌های متن */
+  --vp-c-text-1: #f0f6fc;
+  --vp-c-text-2: #c9d1d9;
+  --vp-c-text-3: #8b949e;
+  
+  /* رنگ‌های نئونی برند */
+  --vp-c-brand: #58a6ff;
+  --vp-c-brand-light: #79c0ff;
+  --vp-c-brand-lighter: #a5d6ff;
+  --vp-c-brand-dark: #1f6feb;
+  --vp-c-brand-darker: #1158c7;
+  
+  /* رنگ‌های ثانویه (بنفش) */
+  --vp-c-accent: #a371f7;
+  --vp-c-accent-light: #bc8cff;
+  
+  /* سایه‌های نئونی */
+  --vp-shadow-1: 0 1px 2px rgba(88, 166, 255, 0.15);
+  --vp-shadow-2: 0 3px 8px rgba(88, 166, 255, 0.2);
+  --vp-shadow-3: 0 12px 32px rgba(88, 166, 255, 0.25);
+  --vp-shadow-4: 0 16px 48px rgba(88, 166, 255, 0.3);
+  --vp-shadow-5: 0 24px 64px rgba(88, 166, 255, 0.35);
+  
+  /* انیمیشن */
+  --vp-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================
+   🌐 تنظیمات پایه
+   ========================================== */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--vp-c-brand) var(--vp-c-bg-soft);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--vp-c-bg-soft);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--vp-c-brand);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand-light);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Vazirmatn', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  direction: rtl;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   📋 Header (ناوبری بالا)
+   ========================================== */
+.VPNav {
+  margin-top: 10px;
+  backdrop-filter: blur(12px) saturate(180%);
+  background: rgba(13, 17, 23, 0.85);
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(88, 166, 255, 0.4) 25%, 
+    rgba(163, 113, 247, 0.4) 75%, 
+    transparent 100%
+  ) 1;
+  box-shadow: 0 4px 16px rgba(88, 166, 255, 0.1);
+  transition: var(--vp-transition);
+}
+
+.VPNav:hover {
+  border-image: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(88, 166, 255, 0.6) 25%, 
+    rgba(163, 113, 247, 0.6) 75%, 
+    transparent 100%
+  ) 1;
+}
+
+/* تراز عمودی عناصر هدر */
+.VPNavBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+}
+
+.VPNavBarTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.VPNavBarMenu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* فاصله استاندارد بین عنوان و سرچ */
+.VPNavBarSearch {
+  margin: 0 24px;
+}
+
+/* انیمیشن ورود هدر */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.VPNav {
+  animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* استایل لینک‌های منو */
+.VPNavBarMenuLink {
+  color: var(--vp-c-text-2);
+  font-weight: 500;
+  transition: var(--vp-transition);
+  position: relative;
+}
+
+.VPNavBarMenuLink:hover {
+  color: var(--vp-c-brand-light);
+  text-shadow: 0 0 12px rgba(88, 166, 255, 0.5);
+}
+
+.VPNavBarMenuLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--vp-c-brand), var(--vp-c-accent));
+  transform: scaleX(0);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.VPNavBarMenuLink:hover::after,
+.VPNavBarMenuLink.active::after {
+  transform: scaleX(1);
+}
+
+/* ==========================================
+   🎯 Hero Section
+   ========================================== */
+.VPHome {
+  padding-top: 80px;
+}
+
+.VPHero {
+  padding: 80px 24px 48px;
+  text-align: center;
+}
+
+/* حذف لوگو از Hero */
+.VPHero .VPImage {
+  display: none;
+}
+
+/* عنوان اصلی */
+.VPHero .name {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #58a6ff 0%, #a371f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 0 40px rgba(88, 166, 255, 0.3);
+  filter: drop-shadow(0 0 30px rgba(88, 166, 255, 0.4));
+}
+
+/* زیرعنوان */
+.VPHero .tagline {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: var(--vp-c-text-2);
+  margin-bottom: 40px;
+  opacity: 0.9;
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s backwards;
+}
+
+/* انیمیشن Fade In */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* دکمه‌های Hero */
+.VPHero .actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+}
+
+/* ==========================================
+   🔘 دکمه‌ها (VPButton)
+   ========================================== */
+.VPButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.75rem 1.75rem;
+  min-width: 160px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  border-radius: 12px;
+  color: var(--vp-c-brand-light);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--vp-transition);
+  box-shadow: 0 4px 12px rgba(88, 166, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.VPButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(88, 166, 255, 0.1) 0%, 
+    rgba(163, 113, 247, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.VPButton:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #58a6ff 0%, #a371f7 100%);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(88, 166, 255, 0.45);
+}
+
+.VPButton:hover::before {
+  opacity: 1;
+}
+
+.VPButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(88, 166, 255, 0.3);
+}
+
+/* دکمه اصلی (Primary) */
+.VPButton.brand {
+  background: linear-gradient(135deg, #58a6ff 0%, #a371f7 100%);
+  color: #fff;
+  border-color: transparent;
+}
+
+.VPButton.brand:hover {
+  box-shadow: 0 8px 24px rgba(88, 166, 255, 0.5);
+}
+
+/* دکمه ثانویه (Alt) */
+.VPButton.alt {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(163, 113, 247, 0.3);
+  color: var(--vp-c-accent-light);
+}
+
+.VPButton.alt:hover {
+  background: linear-gradient(135deg, #a371f7 0%, #bc8cff 100%);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(163, 113, 247, 0.45);
+}
+
+/* ==========================================
+   📄 محتوای اصلی (Content)
+   ========================================== */
+.VPDoc {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.vp-doc {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* ==========================================
+   📊 جداول (Tables)
+   ========================================== */
+.vp-doc table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 40px 0;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 16px rgba(88, 166, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+}
+
+.vp-doc thead {
+  background: linear-gradient(135deg, 
+    rgba(88, 166, 255, 0.15) 0%, 
+    rgba(163, 113, 247, 0.15) 100%
+  );
+  border-bottom: 2px solid rgba(88, 166, 255, 0.3);
+}
+
+.vp-doc th {
+  padding: 16px 20px;
+  text-align: right;
+  font-weight: 600;
+  color: var(--vp-c-brand-light);
+  font-size: 1rem;
+  border: none;
+}
+
+.vp-doc td {
+  padding: 14px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc tr {
+  transition: var(--vp-transition);
+}
+
+.vp-doc tbody tr:hover {
+  background: rgba(88, 166, 255, 0.08);
+}
+
+.vp-doc td a {
+  color: var(--vp-c-brand-light);
+  text-decoration: none;
+  transition: var(--vp-transition);
+  position: relative;
+}
+
+.vp-doc td a:hover {
+  color: var(--vp-c-accent-light);
+  text-shadow: 0 0 8px rgba(88, 166, 255, 0.6);
+}
+
+/* ایموجی‌ها در جداول */
+.vp-doc td:first-child {
+  font-size: 1.25rem;
+}
+
+/* ==========================================
+   📐 خطوط جداکننده
+   ========================================== */
+.vp-doc hr,
+.divider {
+  height: 2px;
+  border: none;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(88, 166, 255, 0.5) 20%,
+    rgba(163, 113, 247, 0.5) 80%,
+    transparent 100%
+  );
+  margin: 48px 0;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   📝 تیترها (Headings)
+   ========================================== */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  margin-top: 48px;
+  margin-bottom: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  position: relative;
+  padding-right: 16px;
+}
+
+.vp-doc h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #58a6ff 0%, #a371f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.vp-doc h2 {
+  font-size: 2rem;
+  color: var(--vp-c-brand-light);
+  border-bottom: 2px solid rgba(88, 166, 255, 0.2);
+  padding-bottom: 12px;
+}
+
+.vp-doc h3 {
+  font-size: 1.5rem;
+  color: var(--vp-c-text-1);
+}
+
+/* ایموجی در تیترها */
+.vp-doc h1::before,
+.vp-doc h2::before,
+.vp-doc h3::before {
+  margin-left: 8px;
+}
+
+/* ==========================================
+   💬 باکس‌های اطلاعاتی (Custom Containers)
+   ========================================== */
+.vp-doc .custom-block {
+  margin: 32px 0;
+  padding: 20px 24px;
+  border-radius: 12px;
+  border-right: 4px solid;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.vp-doc .custom-block.tip {
+  border-color: var(--vp-c-brand);
+  background: rgba(88, 166, 255, 0.08);
+}
+
+.vp-doc .custom-block.warning {
+  border-color: #e3b341;
+  background: rgba(227, 179, 65, 0.08);
+}
+
+.vp-doc .custom-block.danger {
+  border-color: #f85149;
+  background: rgba(248, 81, 73, 0.08);
+}
+
+.vp-doc .custom-block.info {
+  border-color: var(--vp-c-accent);
+  background: rgba(163, 113, 247, 0.08);
+}
+
+.vp-doc .custom-block-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+/* ==========================================
+   🦶 Footer
+   ========================================== */
+.VPFooter {
+  margin-top: 80px;
+  padding: 32px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(88, 166, 255, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.VPFooter .message {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.VPFooter .copyright {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+.VPFooter a {
+  color: var(--vp-c-brand-light);
+  text-decoration: none;
+  transition: var(--vp-transition);
+}
+
+.VPFooter a:hover {
+  color: var(--vp-c-accent-light);
+  text-shadow: 0 0 8px rgba(88, 166, 255, 0.6);
+}
+
+/* ==========================================
+   📱 Responsive Design
+   ========================================== */
+@media (max-width: 768px) {
+  .VPNav {
+    margin-top: 0;
+  }
+  
+  .VPHero {
+    padding: 48px 16px 32px;
+  }
+  
+  .VPHero .name {
+    font-size: 2rem;
+  }
+  
+  .VPHero .tagline {
+    font-size: 1rem;
+  }
+  
+  .VPHero .actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .VPButton {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .vp-doc table {
+    font-size: 0.9rem;
+  }
+  
+  .vp-doc th,
+  .vp-doc td {
+    padding: 12px 14px;
+  }
+  
+  .vp-doc h1 {
+    font-size: 1.8rem;
+  }
+  
+  .vp-doc h2 {
+    font-size: 1.5rem;
+  }
+  
+  .vp-doc h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* ==========================================
+   🎨 لمسات نهایی
+   ========================================== */
+
+/* انیمیشن محو شدن برای محتوا */
+.vp-doc > * {
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus states برای دسترسی بهتر */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--vp-c-brand);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(88, 166, 255, 0.3);
+  color: #fff;
+}
+
+/* انیمیشن Glow برای لینک‌ها */
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(88, 166, 255, 0.6);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(88, 166, 255, 0.8);
+  }
+}
